@@ -28,16 +28,19 @@
       <Movie v-for="movie of movieStore.movies" :key="movie.id" :movie />
       <!-- {{ movieStore.movies }} -->
     </div>
-    <div class="search" v-else>Search</div>
+    <div class="search" v-else>
+      <Search />
+    </div>
   </main>
 </template>
 
 <script setup>
 import Movie from "./components/Movie.vue";
+import Search from "./components/Search.vue";
 import { useMovieStore } from "./stores/MovieStore";
 
 const movieStore = useMovieStore();
-console.log(movieStore);
+// console.log(movieStore);
 
 const setTab = (id) => {
   movieStore.setActiveTab(id);
