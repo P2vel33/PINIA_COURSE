@@ -13,7 +13,12 @@
       </button>
     </div>
     <div class="movies" v-if="movieStore.activeTab === 1">
-      <h3>All movies</h3>
+      <div>
+        <h3>Watched movies: {{ movieStore.watchMovies.length }}</h3>
+        <Movie v-for="movie of movieStore.watchMovies" :key="movie.id" :movie />
+        <!-- {{ movieStore.movies }} -->
+      </div>
+      <h3>All movies: {{ movieStore.totalCountMovies }}</h3>
       <Movie v-for="movie of movieStore.movies" :key="movie.id" :movie />
       <!-- {{ movieStore.movies }} -->
     </div>

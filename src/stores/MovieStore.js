@@ -28,6 +28,7 @@
 // });
 
 import { defineStore } from "pinia";
+import { watch } from "vue";
 
 export const useMovieStore = defineStore("movieStore", {
   state: () => ({
@@ -53,4 +54,12 @@ export const useMovieStore = defineStore("movieStore", {
     ],
     activeTab: 1,
   }),
+  getters: {
+    watchMovies() {
+      return this.movies.filter((el) => el.isWatched);
+    },
+    totalCountMovies() {
+      return this.movies.length;
+    },
+  },
 });
