@@ -34,13 +34,16 @@ export const useSearchStore = defineStore("searchStore", () => {
   const movies = ref([]);
 
   const getMovies = async (search) => {
-    loader.value = true;
-    const res = await fetch(`${url}${search}`);
-
-    const data = await res.json();
-    movies.value = data.results;
-    loader.value = false;
-    console.log(movies.value);
+    try {
+      loader.value = true;
+      const res = await fetch(`${url}${search}`);
+      const data = await res.json();
+      movies.value = data.results;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      loader.value = false;
+    }
   };
 
   const addToUserMovies = (object) => {
